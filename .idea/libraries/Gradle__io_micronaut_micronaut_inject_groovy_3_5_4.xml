@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.micronaut:micronaut-inject-groovy:3.5.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-inject-groovy/3.5.4/589579ac7b0cf44d9646f7244cf25568a25e4bbf/micronaut-inject-groovy-3.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-inject-groovy/3.5.4/dc4ee59844c8a2e79d24a5dffc3648beb59ca080/micronaut-inject-groovy-3.5.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.micronaut:micronaut-core-reactive:3.5.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-core-reactive/3.5.4/b6dfce4cff1d514d81bcad5ef5f4105ef4cb696e/micronaut-core-reactive-3.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-core-reactive/3.5.4/424f9698d85015fd0e5482a44ef00ad088c0753b/micronaut-core-reactive-3.5.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

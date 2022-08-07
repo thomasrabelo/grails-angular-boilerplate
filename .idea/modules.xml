@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/grails-angular-boilerplate.iml" filepath="$PROJECT_DIR$/grails-angular-boilerplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/grails-angular-boilerplate.client.iml" filepath="$PROJECT_DIR$/.idea/modules/client/grails-angular-boilerplate.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.iml" filepath="$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.integrationTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/server/grails-angular-boilerplate.server.test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.grails:grails-databinding:5.2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-databinding/5.2.2/a789183c2ebf8db16ee792268584d05041babf73/grails-databinding-5.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-databinding/5.2.2/e39c8e1686668f26957ae74fbcdf6759f8543651/grails-databinding-5.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

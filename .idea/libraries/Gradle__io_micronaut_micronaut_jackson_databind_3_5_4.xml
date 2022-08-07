@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.micronaut:micronaut-jackson-databind:3.5.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-jackson-databind/3.5.4/e4445cbf100cd0f54c3c37e5910c26362c85fe6e/micronaut-jackson-databind-3.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-jackson-databind/3.5.4/1c8a03b7b3c1c3dbb2a94d970ca4834377f630d/micronaut-jackson-databind-3.5.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

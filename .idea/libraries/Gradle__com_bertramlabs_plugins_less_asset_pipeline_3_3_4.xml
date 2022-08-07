@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bertramlabs.plugins:less-asset-pipeline:3.3.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bertramlabs.plugins/less-asset-pipeline/3.3.4/8a5ab4503c72be26de333f2ac895d11596b0158d/less-asset-pipeline-3.3.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bertramlabs.plugins/less-asset-pipeline/3.3.4/3d70e54fa5d9a8f4f14776887661580409882510/less-asset-pipeline-3.3.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

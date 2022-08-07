@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.grails:grails-bootstrap:5.2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-bootstrap/5.2.2/369b6d26003b7f432a1a58550fcabe344c078d38/grails-bootstrap-5.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.grails/grails-bootstrap/5.2.2/1d1d0acffea5a9e77c4fa6527ee32a32d7455562/grails-bootstrap-5.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
