@@ -8,7 +8,17 @@ import {NavComponent} from "./nav/nav.component";
 import {NavService} from "./nav/nav.service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from "@angular/common";
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { pt_BR } from 'ng-zorro-antd/i18n';
+import pt from '@angular/common/locales/pt';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(pt);
 
 
 @NgModule({
@@ -21,9 +31,14 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, NavService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, NavService, { provide: NZ_I18N, useValue: pt_BR }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
