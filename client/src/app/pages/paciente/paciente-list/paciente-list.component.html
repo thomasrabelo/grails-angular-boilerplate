@@ -1,0 +1,27 @@
+<p>paciente-list works!</p>
+
+<nz-table
+  nzShowSizeChanger
+  [nzData]="listOfPacientes"
+  [nzFrontPagination]="false"
+  [nzLoading]="isLoading"
+  [nzTotal]="totalItems"
+  [nzPageSize]="itemsPerPage"
+  [nzPageIndex]="page"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+  <tr>
+    <th nzColumnKey="nome" [nzSortFn]="true">Name</th>
+    <th nzColumnKey="rg">Gender</th>
+    <th nzColumnKey="cpf" [nzSortFn]="true">Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of listOfPacientes">
+    <td>{{ data.nome }}</td>
+    <td>{{ data.rg }}</td>
+    <td>{{ data.cpf }}</td>
+  </tr>
+  </tbody>
+</nz-table>

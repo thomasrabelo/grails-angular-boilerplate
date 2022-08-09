@@ -1,0 +1,12 @@
+import grails.angular.boilerplate.Paciente
+
+model {
+	Iterable<Paciente> pacienteList
+	Long pacienteTotalCount
+}
+
+json {
+	resultList tmpl.paciente(pacienteList ?: [])
+	totalCount pacienteTotalCount
+}
+

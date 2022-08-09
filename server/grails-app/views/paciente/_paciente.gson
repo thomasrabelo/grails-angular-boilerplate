@@ -1,0 +1,7 @@
+import grails.angular.boilerplate.Paciente
+
+model {
+	Paciente paciente
+}
+
+json g.render(paciente, [resolveTemplate: false])

@@ -35,6 +35,14 @@
             "scripts": []
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "extractLicenses": false,
+              "namedChunks": true,
+              "optimization": false,
+              "sourceMap": true,
+              "vendorChunk": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -70,6 +78,9 @@
             "browserTarget": "grails-angular-boilerplate:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "grails-angular-boilerplate:build:development"
+            },
             "production": {
               "browserTarget": "grails-angular-boilerplate:build:production"
             },
