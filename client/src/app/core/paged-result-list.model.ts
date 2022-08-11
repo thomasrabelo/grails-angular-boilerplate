@@ -1,4 +1,4 @@
-export class ResultList<T> {
+export class PagedResultList<T> {
   resultList: T[] = [];
   totalCount: number = 0;
 

@@ -1,99 +1,32 @@
 import { Injectable } from '@angular/core';
-import {catchError, map, Observable, retry, Subject, throwError} from "rxjs";
-import {Paciente} from "./paciente";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest} from "@angular/common/http";
-import {Pagination} from "../../core/request/request.model";
-import {createRequestOption} from "../../core/request/request-util";
-import {ResultList} from "../../core/result-list.model";
+import {HttpClient} from "@angular/common/http";
+import {Any, BaseUrl, DELETE, GET, Path, Query, RebirthHttpClient} from "@ng-zorro/rebirth-http";
+import {catchError, Observable, retry} from "rxjs";
+import {PagedResultList} from "../../core/paged-result-list.model";
+import {Paciente} from "./paciente.model";
 
+@BaseUrl('http://localhost:8080')
 @Injectable({
   providedIn: 'root'
 })
+export class PacienteService extends RebirthHttpClient {
 
-export class PacienteService {
-
-  private baseUrl = 'http://localhost:8080';
-
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Unknown error!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side errors
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
+  @GET('paciente')
+  list(
+    @Query('offset') pageIndex = 0,
+    @Query('max') pageSize = 10,
+    @Query('sort') sort = 'id',
+    @Query('order') order = 'asc'
+  ): Observable<PagedResultList<Paciente>> {
+    return Any; // return Any as a placeholder
   }
 
-  list(req?: Pagination): Observable<ResultList<Paciente>> {
-    const options = createRequestOption(req);
-    return this.http.get<ResultList<Paciente>>(this.baseUrl + '/paciente', {params: options})
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
-
-  get(id: number): Observable<Paciente> {
-    return this.http.get<Paciente>(this.baseUrl + '/paciente/'+id)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
-
-  save(paciente: Paciente): Observable<Paciente> {
-    const headers = new HttpHeaders();
-    headers.append("Accept", 'application/json');
-    headers.delete("Content-Type");
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-
-    const formData: FormData = new FormData();
-
-    for (let property in paciente) {
-      if (paciente.hasOwnProperty(property)) {
-        let value;
-        if (paciente[property] instanceof Date) {
-          value = paciente[property].toISOString();
-        } else {
-          value = paciente[property];
-        }
-        formData.append(property, value);
-      }
-    }
-
-    const requestOptions = {
-      method: '',
-      url: '',
-      headers: headers,
-      body: formData
-    };
-
-    if (paciente.id) {
-      requestOptions.method = 'PUT';
-      requestOptions.url = this.baseUrl + '/paciente/' + paciente.id;
-    } else {
-      requestOptions.method = 'POST';
-      requestOptions.url = this.baseUrl + '${uri}';
-    }
-
-    return this.http.request<Paciente>(requestOptions.method, requestOptions.url, requestOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
-
-  destroy(paciente: Paciente): Observable<boolean> {
-    return this.http.delete<boolean>(this.baseUrl + '/paciente/' + paciente.id)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+  @DELETE('paciente/:id')
+  destroy(@Path('id') id: number): Observable<Paciente> {
+    return Any;
   }
 }

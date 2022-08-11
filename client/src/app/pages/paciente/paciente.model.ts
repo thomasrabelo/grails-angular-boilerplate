@@ -15,6 +15,6 @@ export class Paciente {
   }
 
   toString(): string {
-    return 'Paciente : ' + (this.id ? this.id : '(unsaved)');
+    return 'PacienteModel : ' + (this.id ? this.id : '(unsaved)');
   }
 }
