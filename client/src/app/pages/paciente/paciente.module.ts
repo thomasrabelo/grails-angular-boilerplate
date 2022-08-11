@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { PacienteListComponent } from './paciente-list/paciente-list.component';
 import {PacienteRoutingModule} from "./paciente-routing.module";
 import {SharedModule} from "../../shared/shared.module";
+import { PacienteEditComponent } from './paciente-edit/paciente-edit.component';
 
 @NgModule({
   declarations: [
-    PacienteListComponent
+    PacienteListComponent,
+    PacienteEditComponent
   ],
-    imports: [
-        CommonModule, PacienteRoutingModule, SharedModule
-    ],
+  imports: [
+    PacienteRoutingModule, SharedModule
+  ],
   exports: [
     PacienteListComponent
   ]

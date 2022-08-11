@@ -1340,12 +1340,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@ng-bootstrap/ng-bootstrap@12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-12.1.2.tgz#19f21313234fe21090ba50a7721046ed5d9928e1"
-  integrity sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==
-  dependencies:
-    tslib "^2.3.0"
+"@ng-zorro/rebirth-http@^9.0.0-alpha.0":
+  version "9.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ng-zorro/rebirth-http/-/rebirth-http-9.0.0-alpha.0.tgz#fa7d2bc7a9851877de8ad853724d039fc0484b7e"
+  integrity sha512-N5txwYDAYbPbL7ZiaqQ11q6+4dSe5HVgXmLDGTUz175ROiT5ARdfMkIW6Z3dEd5jPa4Ru+k1TbdV1VUlL6ATRw==
 
 "@ngtools/webpack@13.3.9":
   version "13.3.9"
@@ -2284,11 +2282,6 @@ boolbase@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
-
-bootstrap@^5.0.2:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.0.tgz#838727fb60f1630db370fe57c63cbcf2962bb3d3"
-  integrity sha512-qlnS9GL6YZE6Wnef46GxGv1UpGGzAwO0aPL1yOjzDIJpeApeMvqV24iL+pjr2kU4dduoBA9fINKWKgMToobx9A==
 
 brace-expansion@^1.1.7:
   version "1.1.11"

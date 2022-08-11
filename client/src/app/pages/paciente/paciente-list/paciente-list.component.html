@@ -1,12 +1,6 @@
 <nz-page-header class="site-page-header">
   <!--breadcrumb-->
-  <nz-breadcrumb nz-page-header-breadcrumb>
-    <nz-breadcrumb-item>First-level Menu</nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a>Second-level Menu</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>Third-level Menu</nz-breadcrumb-item>
-  </nz-breadcrumb>
+<!--  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true"></nz-breadcrumb>-->
 
   <!--avatar-->
 <!--  <nz-avatar nz-page-header-avatar nzSrc="https://avatars0.githubusercontent.com/u/22736418?s=88&v=4"></nz-avatar>-->
@@ -25,9 +19,9 @@
   <!--extra-->
   <nz-page-header-extra>
     <nz-space>
-      <button *nzSpaceItem nz-button>Operation</button>
-      <button *nzSpaceItem nz-button>Operation</button>
-      <button *nzSpaceItem nz-button nzType="primary">Novo Paciente</button>
+<!--      <button *nzSpaceItem nz-button>Operation</button>-->
+<!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/paciente/create']">Novo Paciente</button>
       <button
         *nzSpaceItem
         nz-button
@@ -77,9 +71,9 @@
           </a>
         </div>
       </div>
-      <div class="content-image">
-        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />
-      </div>
+<!--      <div class="content-image">-->
+<!--        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />-->
+<!--      </div>-->
     </div>
   </nz-page-header-content>
 </nz-page-header>
@@ -111,7 +105,7 @@
     <td>{{ data.rg }}</td>
     <td>{{ data.cpf }}</td>
     <td nzRight nzEllipsis>
-      <a href="#">Editar</a>
+      <a [routerLink]="['/paciente/edit', data.id]">Editar</a>
       <nz-divider nzType="vertical"></nz-divider>
       <a (click)="delete(data.id)">Excluir</a>
     </td>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Any, BaseUrl, DELETE, GET, Path, Query, RebirthHttpClient} from "@ng-zorro/rebirth-http";
+import {Any, BaseUrl, Body, DELETE, GET, Path, POST, PUT, Query, RebirthHttpClient} from "@ng-zorro/rebirth-http";
 import {catchError, Observable, retry} from "rxjs";
 import {PagedResultList} from "../../core/paged-result-list.model";
 import {Paciente} from "./paciente.model";
@@ -25,8 +25,26 @@ export class PacienteService extends RebirthHttpClient {
     return Any; // return Any as a placeholder
   }
 
+  @GET('paciente/:id')
+  get(@Path('id') articleUrl: string): Observable<Paciente> {
+    return Any;
+  }
+
+  @POST('paciente')
+  save(@Body paciente: Paciente): Observable<Paciente> {
+    return Any;
+  }
+
+  @PUT('paciente/:id')
+  update(
+    @Path('id') id: string,
+    @Body paciente: Paciente
+  ): Observable<Paciente> {
+    return Any;
+  }
+
   @DELETE('paciente/:id')
-  destroy(@Path('id') id: number): Observable<Paciente> {
+  delete(@Path('id') id: number): Observable<Paciente> {
     return Any;
   }
 }

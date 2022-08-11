@@ -5,6 +5,7 @@ import {PacienteService} from "../paciente.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {Paciente} from "../paciente.model";
+import {PacienteEditComponent} from "../paciente-edit/paciente-edit.component";
 
 @Component({
   selector: 'app-paciente-list',
@@ -46,7 +47,7 @@ export class PacienteListComponent implements OnInit, OnDestroy {
 
     const offset = pageIndex === undefined ? this.page : (pageIndex - 1) * pageSize;
     const max = pageSize === undefined ? this.itemsPerPage : pageSize;
-    const sort = sortField === null ? this.sortField : sortField;;
+    const sort = sortField === null ? this.sortField : sortField;
     const order = sortOrder === null ? this.sortOrder : sortOrder === 'ascend' ?
       'asc' : sortOrder === 'descend' ? 'desc' : this.sortOrder;
 
@@ -78,7 +79,7 @@ export class PacienteListComponent implements OnInit, OnDestroy {
       nzOnOk: () => {
         this.isLoading = true;
 
-        this.pacienteService.destroy(id).subscribe(res => {
+        this.pacienteService.delete(id).subscribe(res => {
             this.messageService.info('Paciente:' + JSON.stringify(id))
             this.isLoading = false;
             this.loadDataFromServer(this.page, this.itemsPerPage)
@@ -86,6 +87,13 @@ export class PacienteListComponent implements OnInit, OnDestroy {
             error => this.isLoading = false
         );
       }
+    });
+  }
+
+  edit(id: number): void {
+    this.modalService.create({
+      nzTitle: 'Modal Title',
+      nzContent: PacienteEditComponent
     });
   }
 
