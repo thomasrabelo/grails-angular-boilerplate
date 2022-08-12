@@ -8,15 +8,15 @@ import {NavService} from "./nav/nav.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HashLocationStrategy, LocationStrategy, registerLocaleData} from "@angular/common";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { pt_BR } from 'ng-zorro-antd/i18n';
-import pt from '@angular/common/locales/pt';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RebirthHttpModule} from "@ng-zorro/rebirth-http";
 import {SharedModule} from "./shared/shared.module";
 import {httpInterceptorProviders} from "./core/interceptor";
 
-registerLocaleData(pt);
+registerLocaleData(en);
 
 
 @NgModule({
@@ -35,7 +35,7 @@ registerLocaleData(pt);
     SharedModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, NavService,
-    { provide: NZ_I18N, useValue: pt_BR }, httpInterceptorProviders],
+    { provide: NZ_I18N, useValue: en_US }, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

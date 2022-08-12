@@ -21,7 +21,8 @@
     <nz-space>
       <!--      <button *nzSpaceItem nz-button>Operation</button>-->
       <!--      <button *nzSpaceItem nz-button>Operation</button>-->
-      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/patient/create']">Create New Patient</button>
+      <button *nzSpaceItem nz-button nzType="primary" (click)="createNewPatient()">Create New Patient</button>
+      <!--      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/patient/create']">Create New Patient</button>-->
       <button
         *nzSpaceItem
         nz-button
@@ -44,38 +45,38 @@
   </nz-page-header-extra>
 
   <!--content-->
-  <nz-page-header-content>
-    <div nz-row>
-      <div class="content">
-        <p nz-paragraph>
-          Ant Design interprets the color system into two levels: a system-level color system and a product-level
-          color system.
-        </p>
-        <p nz-paragraph>
-          Ant Design's design team preferred to design with the HSB color model, which makes it easier for designers
-          to have a clear psychological expectation of color when adjusting colors, as well as facilitate
-          communication in teams.
-        </p>
-        <div class="content-link">
-          <a>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg" alt="start" />
-            Quick Start
-          </a>
-          <a>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" alt="info" />
-            Product Info
-          </a>
-          <a>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" alt="doc" />
-            Product Doc
-          </a>
-        </div>
-      </div>
-      <!--      <div class="content-image">-->
-      <!--        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />-->
-      <!--      </div>-->
-    </div>
-  </nz-page-header-content>
+<!--  <nz-page-header-content>-->
+<!--    <div nz-row>-->
+<!--      <div class="content">-->
+<!--        <p nz-paragraph>-->
+<!--          Ant Design interprets the color system into two levels: a system-level color system and a product-level-->
+<!--          color system.-->
+<!--        </p>-->
+<!--        <p nz-paragraph>-->
+<!--          Ant Design's design team preferred to design with the HSB color model, which makes it easier for designers-->
+<!--          to have a clear psychological expectation of color when adjusting colors, as well as facilitate-->
+<!--          communication in teams.-->
+<!--        </p>-->
+<!--        <div class="content-link">-->
+<!--          <a>-->
+<!--            <img src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg" alt="start" />-->
+<!--            Quick Start-->
+<!--          </a>-->
+<!--          <a>-->
+<!--            <img src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" alt="info" />-->
+<!--            Product Info-->
+<!--          </a>-->
+<!--          <a>-->
+<!--            <img src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" alt="doc" />-->
+<!--            Product Doc-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;      <div class="content-image">&ndash;&gt;-->
+<!--      &lt;!&ndash;        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />&ndash;&gt;-->
+<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </nz-page-header-content>-->
 </nz-page-header>
 
 <nz-table
@@ -92,6 +93,7 @@
   <thead>
   <tr>
     <th nzColumnKey="id" [nzSortFn]="true">Id</th>
+<!--    <th nzColumnKey="photoUrl">Photo</th>-->
     <th nzColumnKey="name" [nzSortFn]="true">Name</th>
     <th nzColumnKey="gender" [nzSortFn]="true">gender</th>
     <th nzColumnKey="bloodGroup" [nzSortFn]="true">Blood Group</th>
@@ -104,6 +106,7 @@
   <tbody>
   <tr *ngFor="let data of listOfPatients">
     <td>{{ data.id }}</td>
+<!--    <td><img nz-image width="50px" height="50px" nzSrc="error" [nzFallback]="fallback" alt="" /></td>-->
     <td>{{ data.name }}</td>
     <td>{{ data.gender }}</td>
     <td>{{ data.bloodGroup }}</td>
@@ -111,7 +114,7 @@
     <td>{{ data.mobileNumber }}</td>
     <td>{{ data.email }}</td>
     <td nzRight nzEllipsis>
-      <a [routerLink]="['/patient/edit', data.id]">Edit</a>
+      <a (click)="edit(data.id)">Edit</a>
       <nz-divider nzType="vertical"></nz-divider>
       <a (click)="delete(data.id)">Delete</a>
     </td>

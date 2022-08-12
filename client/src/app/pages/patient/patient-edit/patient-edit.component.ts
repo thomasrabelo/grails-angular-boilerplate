@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {PatientService} from "../patient.service";
-import {Patient} from "../patient.model";
+import {BloodGroup, Gender, Patient} from "../patient.model";
 import {Subject, takeUntil} from "rxjs";
+import {NzModalRef} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'app-patient-edit',
@@ -11,27 +12,19 @@ import {Subject, takeUntil} from "rxjs";
   styleUrls: ['./patient-edit.component.css']
 })
 export class PatientEditComponent implements OnInit, OnDestroy {
+  @Input() patientId?: number;
+
+  isConfirmLoading = false;
   patient: Patient = new Patient();
   patientForm!: FormGroup;
 
+  bloodGroupEnum = BloodGroup;
+  genderEnum = Gender;
+
   protected readonly unsubscribe$ = new Subject<void>();
 
-
-  submitForm(): void {
-    if (this.patientForm.valid) {
-      console.log('submit', this.patientForm.value);
-    } else {
-      Object.values(this.patientForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
-
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private patientService: PatientService,
-              private router: Router) {}
+              private router: Router, private modal: NzModalRef) {}
 
   ngOnInit() {
     this.loadData();
@@ -44,9 +37,8 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   }
 
   loadData(){
-    this.route.params.subscribe((params: Params) => {
-      if (params.hasOwnProperty('id')) {
-        this.patientService.get(params['id'])
+      if (this.patientId) {
+        this.patientService.get(this.patientId)
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe((patient) => {
             this.patient = patient;
@@ -62,11 +54,11 @@ export class PatientEditComponent implements OnInit, OnDestroy {
             });
           });
       }
-    });
   }
 
   initForm() {
     this.patientForm = this.fb.group({
+      id: [null],
       name: [null, [Validators.required]],
       gender: [null, [Validators.required]],
       dob: [null, [Validators.required]],
@@ -78,18 +70,35 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    const patient: Patient = this.patientForm.value;
+    if (this.patientForm.valid) {
 
-    this.patientService.save(patient).subscribe((patient) => {
-      this.router.navigate(['/${propertyName}', 'show', patient.id]);
-    }, (res: Response) => {
-      const json = res.json();
-      if (json.hasOwnProperty('message')) {
-        //this.errors = [json];
-      } else {
-        //this.errors = json._embedded.errors;
-      }
-    });
+      this.isConfirmLoading = true;
+
+      const patient: Patient = this.patientForm.value;
+      this.patientService.save(this.patientForm.value).subscribe((patient) => {
+        this.modal.destroy();
+        this.isConfirmLoading = false;
+      }, (res: Response) => {
+        const json = res.json();
+        if (json.hasOwnProperty('message')) {
+          //this.errors = [json];
+        } else {
+          //this.errors = json._embedded.errors;
+        }
+      });
+
+    } else {
+      Object.values(this.patientForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  cancel(): void {
+    this.modal.destroy();
   }
 
 }

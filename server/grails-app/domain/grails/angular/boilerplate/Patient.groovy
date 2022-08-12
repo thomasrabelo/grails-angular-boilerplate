@@ -13,5 +13,6 @@ class Patient {
 
     static constraints = {
         photoUrl(nullable: true)
+        symptoms(nullable: true)
     }
 }

@@ -26,7 +26,7 @@ export class PatientService extends RebirthHttpClient {
   }
 
   @GET('patient/:id')
-  get(@Path('id') id: string): Observable<Patient> {
+  get(@Path('id') id: number): Observable<Patient> {
     return Any;
   }
 
@@ -37,7 +37,7 @@ export class PatientService extends RebirthHttpClient {
 
   @PUT('patient/:id')
   update(
-    @Path('id') id: string,
+    @Path('id') id: number,
     @Body patient: Patient
   ): Observable<Patient> {
     return Any;
