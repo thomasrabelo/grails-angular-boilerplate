@@ -5,7 +5,9 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
   { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
   { path: 'paciente', loadChildren: () => import('./pages/paciente/paciente.module').then(m => m.PacienteModule),
-      data: { breadcrumb: 'Pacientes' } }
+      data: { breadcrumb: 'Pacientes' } },
+  { path: 'patient', loadChildren: () => import('./pages/patient/patient.module').then(m => m.PatientModule),
+    data: { breadcrumb: 'Patients' } }
 ];
 
 @NgModule({

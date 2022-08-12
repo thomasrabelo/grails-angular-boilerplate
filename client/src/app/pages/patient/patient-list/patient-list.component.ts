@@ -1,18 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {NzTableQueryParams} from "ng-zorro-antd/table";
-import {PacienteService} from "../paciente.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {Paciente} from "../paciente.model";
-import {PacienteEditComponent} from "../paciente-edit/paciente-edit.component";
+import {NzTableQueryParams} from "ng-zorro-antd/table";
+import {PatientService} from "../patient.service";
+import {Patient} from "../patient.model";
 
 @Component({
-  selector: 'app-paciente-list',
-  templateUrl: './paciente-list.component.html',
-  styleUrls: ['./paciente-list.component.css']
+  selector: 'app-patient-list',
+  templateUrl: './patient-list.component.html',
+  styleUrls: ['./patient-list.component.css']
 })
-export class PacienteListComponent implements OnInit, OnDestroy {
+export class PatientListComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   totalItems = 0;
@@ -20,11 +19,11 @@ export class PacienteListComponent implements OnInit, OnDestroy {
   page: number = 0;
   sortField: string = 'id';
   sortOrder: string = 'asc';
-  listOfPacientes: Paciente[] = [];
+  listOfPatients: Patient[] = [];
 
   protected readonly unsubscribe$ = new Subject<void>();
 
-  constructor(private pacienteService: PacienteService,
+  constructor(private patientService: PatientService,
               private modalService: NzModalService,
               private messageService: NzMessageService) { }
 
@@ -51,14 +50,14 @@ export class PacienteListComponent implements OnInit, OnDestroy {
       'asc' : sortOrder === 'descend' ? 'desc' : this.sortOrder;
 
     this.isLoading = true;
-    this.pacienteService.list(offset, max, sort, order)
+    this.patientService.list(offset, max, sort, order)
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      .subscribe(pacienteResultList => {
+      .subscribe(patientResultList => {
         this.isLoading = false;
-        this.totalItems = pacienteResultList.totalCount;
-        this.listOfPacientes = pacienteResultList.resultList;
+        this.totalItems = patientResultList.totalCount;
+        this.listOfPatients = patientResultList.resultList;
       })
   }
 
@@ -74,26 +73,26 @@ export class PacienteListComponent implements OnInit, OnDestroy {
   delete(id: number): void {
     this.modalService.confirm({
       nzTitle: 'Confirmar exclusão',
-      nzContent: 'Deseja excluir o paciente?',
+      nzContent: 'Deseja excluir o patient?',
       nzOnOk: () => {
         this.isLoading = true;
 
-        this.pacienteService.delete(id).subscribe(res => {
-            this.messageService.info('Paciente:' + JSON.stringify(id))
+        this.patientService.delete(id).subscribe(res => {
+            this.messageService.info('Patient:' + JSON.stringify(id))
             this.isLoading = false;
             this.loadDataFromServer(this.page, this.itemsPerPage)
           },
-            error => this.isLoading = false
+          error => this.isLoading = false
         );
       }
     });
   }
 
-  edit(id: number): void {
-    this.modalService.create({
-      nzTitle: 'Modal Title',
-      nzContent: PacienteEditComponent
-    });
-  }
+  // edit(id: number): void {
+  //   this.modalService.create({
+  //     nzTitle: 'Modal Title',
+  //     nzContent: PatientEditComponent
+  //   });
+  // }
 
 }

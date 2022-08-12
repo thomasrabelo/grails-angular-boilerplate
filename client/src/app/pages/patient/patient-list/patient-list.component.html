@@ -1,27 +1,27 @@
 <nz-page-header class="site-page-header">
   <!--breadcrumb-->
-<!--  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true"></nz-breadcrumb>-->
+  <!--  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true"></nz-breadcrumb>-->
 
   <!--avatar-->
-<!--  <nz-avatar nz-page-header-avatar nzSrc="https://avatars0.githubusercontent.com/u/22736418?s=88&v=4"></nz-avatar>-->
+  <!--  <nz-avatar nz-page-header-avatar nzSrc="https://avatars0.githubusercontent.com/u/22736418?s=88&v=4"></nz-avatar>-->
 
   <!--title-->
-  <nz-page-header-title>Pacientes</nz-page-header-title>
+  <nz-page-header-title>Patients</nz-page-header-title>
 
   <!--subtitle-->
-<!--  <nz-page-header-subtitle>This is a subtitle</nz-page-header-subtitle>-->
+  <!--  <nz-page-header-subtitle>This is a subtitle</nz-page-header-subtitle>-->
 
   <!--tags-->
-<!--  <nz-page-header-tags>-->
-<!--    <nz-tag [nzColor]="'blue'">Running</nz-tag>-->
-<!--  </nz-page-header-tags>-->
+  <!--  <nz-page-header-tags>-->
+  <!--    <nz-tag [nzColor]="'blue'">Running</nz-tag>-->
+  <!--  </nz-page-header-tags>-->
 
   <!--extra-->
   <nz-page-header-extra>
     <nz-space>
-<!--      <button *nzSpaceItem nz-button>Operation</button>-->
-<!--      <button *nzSpaceItem nz-button>Operation</button>-->
-      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/paciente/create']">Novo Paciente</button>
+      <!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/patient/create']">Create New Patient</button>
       <button
         *nzSpaceItem
         nz-button
@@ -71,18 +71,17 @@
           </a>
         </div>
       </div>
-<!--      <div class="content-image">-->
-<!--        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />-->
-<!--      </div>-->
+      <!--      <div class="content-image">-->
+      <!--        <img src="https://gw.alipayobjects.com/zos/antfincdn/K%24NnlsB%26hz/pageHeader.svg" alt="content" />-->
+      <!--      </div>-->
     </div>
   </nz-page-header-content>
 </nz-page-header>
 
 <nz-table
-  [nzScroll]="{ y: '500px' }"
   nzShowSizeChanger
   [nzBordered]="true"
-  [nzData]="listOfPacientes"
+  [nzData]="listOfPatients"
   [nzFrontPagination]="false"
   [nzLoading]="isLoading"
   [nzTotal]="totalItems"
@@ -93,22 +92,28 @@
   <thead>
   <tr>
     <th nzColumnKey="id" [nzSortFn]="true">Id</th>
-    <th nzColumnKey="nome" [nzSortFn]="true">Nome</th>
-    <th nzColumnKey="rg">RG</th>
-    <th nzColumnKey="cpf" [nzSortFn]="true">CPF</th>
-    <th nzRight>Ações</th>
+    <th nzColumnKey="name" [nzSortFn]="true">Name</th>
+    <th nzColumnKey="gender" [nzSortFn]="true">gender</th>
+    <th nzColumnKey="bloodGroup" [nzSortFn]="true">Blood Group</th>
+    <th nzColumnKey="symptoms" [nzSortFn]="true">Symptoms</th>
+    <th nzColumnKey="mobileNumber" [nzSortFn]="true">Mobile Number</th>
+    <th nzColumnKey="email" [nzSortFn]="true">Email</th>
+    <th nzRight>Actions</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of listOfPacientes">
+  <tr *ngFor="let data of listOfPatients">
     <td>{{ data.id }}</td>
-    <td>{{ data.nome }}</td>
-    <td>{{ data.rg }}</td>
-    <td>{{ data.cpf }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.gender }}</td>
+    <td>{{ data.bloodGroup }}</td>
+    <td>{{ data.symptoms }}</td>
+    <td>{{ data.mobileNumber }}</td>
+    <td>{{ data.email }}</td>
     <td nzRight nzEllipsis>
-      <a [routerLink]="['/paciente/edit', data.id]">Editar</a>
+      <a [routerLink]="['/patient/edit', data.id]">Edit</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(data.id)">Excluir</a>
+      <a (click)="delete(data.id)">Delete</a>
     </td>
   </tr>
   </tbody>
