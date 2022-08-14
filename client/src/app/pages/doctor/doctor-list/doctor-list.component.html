@@ -1,0 +1,85 @@
+<nz-page-header class="site-page-header">
+  <!--title-->
+  <nz-page-header-title>Doctors</nz-page-header-title>
+
+  <!--extra-->
+  <nz-page-header-extra>
+    <nz-space>
+
+      <nz-select *nzSpaceItem nzShowSearch nzAllowClear nzPlaceHolder="Select a Specialization" >
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+
+      <!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <button *nzSpaceItem nz-button nzType="primary" (click)="createNewDoctor()">Create New Doctor</button>
+      <!--      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/patient/create']">Create New Patient</button>-->
+      <button
+        *nzSpaceItem
+        nz-button
+        nzNoAnimation
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzPlacement="bottomRight"
+        style="border: none; padding: 0"
+      >
+        <i nz-icon nzType="more" nzTheme="outline" style="font-size: 20px; vertical-align: top;"></i>
+      </button>
+    </nz-space>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>1st menu item length</li>
+        <li nz-menu-item>2nd menu item length</li>
+        <li nz-menu-item>3rd menu item length</li>
+      </ul>
+    </nz-dropdown-menu>
+  </nz-page-header-extra>
+
+</nz-page-header>
+
+<nz-list nzGrid [nzLoading]="isLoading">
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzXXl]="8" [nzXl]="4" [nzLg]="6" [nzMd]="6" [nzSm]="12" [nzXs]="24" *ngFor="let doctor of listOfDoctors">
+      <nz-list-item>
+        <nz-card nzHoverable (click)="show(doctor.id)">
+          <nz-card-meta
+            [nzAvatar]="avatarTemplate"
+            [nzTitle]="titleTemplate"
+            [nzDescription]="descriptionTemplate"
+          ></nz-card-meta>
+        </nz-card>
+        <ng-template #avatarTemplate>
+          <nz-avatar nzSize="large" nzShape="circle" nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+        </ng-template>
+        <ng-template #titleTemplate>
+          <div nz-row>
+            <span nz-typography>{{ doctor.name }}</span>
+          </div>
+          <div nz-row>
+            <span nz-typography>{{ doctor.education }}</span>
+          </div>
+        </ng-template>
+        <ng-template #descriptionTemplate>
+          <div nz-row nzJustify="start">
+            <div nz-col colspan="8">
+              <div nz-row>Designation</div>
+              <div nz-row>{{ doctor.designation }}</div>
+            </div>
+            <div nz-col colspan="8">
+              <nz-divider nzType="vertical" style="height: 100%"></nz-divider>
+            </div>
+            <div nz-col colspan="8">
+              <div nz-row>Experience</div>
+              <div nz-row>{{ doctor.experience}}</div>
+            </div>
+          </div>
+        </ng-template>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
+
+<nz-pagination nz-row nzJustify="end" [nzPageIndex]="page" [nzTotal]="totalItems" [nzPageSize]="itemsPerPage" nzShowSizeChanger
+  (nzPageIndexChange)="onPageIndexChange($event)" (nzPageSizeChange)="onPageSizeChange($event)"></nz-pagination>

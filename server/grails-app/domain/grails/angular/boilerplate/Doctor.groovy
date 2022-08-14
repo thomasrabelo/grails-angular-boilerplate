@@ -15,5 +15,7 @@ class Doctor {
 
     static constraints = {
         photoUrl(nullable: true)
+        department(nullable: true)
+        specialization(nullable: true)
     }
 }

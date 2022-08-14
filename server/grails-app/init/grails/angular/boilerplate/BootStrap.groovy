@@ -4,6 +4,7 @@ class BootStrap {
 
     PacienteService pacienteService
     PatientService patientService
+    DoctorService doctorService
 
     def init = { servletContext ->
         for(int i in 1..50) {
@@ -24,6 +25,20 @@ class BootStrap {
             patient.email = "trabelo@gmail.com"
             patient.symptoms = "";
             patientService.save(patient)
+        }
+
+        for(int i in 1..50) {
+            Doctor doctor = new Doctor();
+            doctor.name = "Joao" + i
+            doctor.gender = Gender.MALE
+            doctor.mobileNumber = "87988240185"
+            doctor.email = "trabelo@gmail.com"
+            doctor.education = "MSc. Neurology"
+            doctor.experience = "General"
+            doctor.designation = "General"
+            doctor.specialization = null
+            doctor.department = null
+            doctorService.save(doctor)
         }
     }
     def destroy = {

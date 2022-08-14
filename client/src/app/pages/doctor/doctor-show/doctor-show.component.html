@@ -1,0 +1,47 @@
+<nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon>
+  <!--title-->
+  <nz-page-header-title>Doctor Details</nz-page-header-title>
+
+  <!--extra-->
+  <nz-page-header-extra>
+    <nz-space>
+
+      <!--      <button *nzSpaceItem nz-button>Operation</button>-->
+      <button *nzSpaceItem nz-button (click)="delete(doctor.id)">Delete</button>
+      <button *nzSpaceItem nz-button nzType="primary" (click)="doctor.id">Edit</button>
+      <!--      <button *nzSpaceItem nz-button nzType="primary" [routerLink]="['/patient/create']">Create New Patient</button>-->
+      <button
+        *nzSpaceItem
+        nz-button
+        nzNoAnimation
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzPlacement="bottomRight"
+        style="border: none; padding: 0"
+      >
+        <i nz-icon nzType="more" nzTheme="outline" style="font-size: 20px; vertical-align: top;"></i>
+      </button>
+    </nz-space>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>1st menu item length</li>
+        <li nz-menu-item>2nd menu item length</li>
+        <li nz-menu-item>3rd menu item length</li>
+      </ul>
+    </nz-dropdown-menu>
+  </nz-page-header-extra>
+
+</nz-page-header>
+
+<ng-container *ngIf="doctor as doctor">
+  <nz-descriptions nzSize="small">
+    <nz-descriptions-item nzTitle="Name">{{ doctor.name }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Gender">{{ doctor.gender }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Mobile Number">{{ doctor.mobileNumber }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Email">{{ doctor.email }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Education">{{ doctor.education }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Experience">{{ doctor.experience }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Designation">{{ doctor.designation }}</nz-descriptions-item>
+  </nz-descriptions>
+</ng-container>
+

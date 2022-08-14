@@ -19,6 +19,14 @@
   <!--extra-->
   <nz-page-header-extra>
     <nz-space>
+
+      <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="input search text" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+
       <!--      <button *nzSpaceItem nz-button>Operation</button>-->
       <!--      <button *nzSpaceItem nz-button>Operation</button>-->
       <button *nzSpaceItem nz-button nzType="primary" (click)="createNewPatient()">Create New Patient</button>
@@ -37,9 +45,8 @@
     </nz-space>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <li nz-menu-item>1st menu item length</li>
-        <li nz-menu-item>2nd menu item length</li>
-        <li nz-menu-item>3rd menu item length</li>
+        <li nz-menu-item>Export XLS</li>
+        <li nz-menu-item>Export CSV</li>
       </ul>
     </nz-dropdown-menu>
   </nz-page-header-extra>
@@ -104,19 +111,19 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of listOfPatients">
-    <td>{{ data.id }}</td>
+  <tr *ngFor="let patient of listOfPatients">
+    <td>{{ patient.id }}</td>
 <!--    <td><img nz-image width="50px" height="50px" nzSrc="error" [nzFallback]="fallback" alt="" /></td>-->
-    <td>{{ data.name }}</td>
-    <td>{{ data.gender }}</td>
-    <td>{{ data.bloodGroup }}</td>
-    <td>{{ data.symptoms }}</td>
-    <td>{{ data.mobileNumber }}</td>
-    <td>{{ data.email }}</td>
+    <td>{{ patient.name }}</td>
+    <td>{{ patient.gender }}</td>
+    <td>{{ patient.bloodGroup }}</td>
+    <td>{{ patient.symptoms }}</td>
+    <td>{{ patient.mobileNumber }}</td>
+    <td>{{ patient.email }}</td>
     <td nzRight nzEllipsis>
-      <a (click)="edit(data.id)">Edit</a>
+      <a (click)="edit(patient.id)">Edit</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(data.id)">Delete</a>
+      <a (click)="delete(patient.id)">Delete</a>
     </td>
   </tr>
   </tbody>
