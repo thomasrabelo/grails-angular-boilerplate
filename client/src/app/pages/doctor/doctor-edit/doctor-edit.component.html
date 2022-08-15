@@ -1,1 +1,77 @@
-<p>doctor-edit works!</p>
+<div>
+
+  <form (ngSubmit)="save()" [formGroup]="doctorForm" nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>Doctor Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Doctor Name!">
+        <input formControlName="name" id="name" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gender" nzRequired>Gender</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Gender!">
+        <nz-select formControlName="gender" id="gender">
+          <nz-option *ngFor="let o of genderEnum | keyvalue" [nzLabel]="o.key" [nzValue]="o.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mobileNumber" nzRequired>Mobile Number</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Mobile Number!">
+        <input formControlName="mobileNumber" id="mobileNumber" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email" nzRequired>Email</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Email!">
+        <input formControlName="email" id="email" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="education" nzRequired>Education</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Education!">
+        <input formControlName="education" id="education" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="experience" nzRequired>Experience</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Experience!">
+        <input formControlName="experience" id="experience" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="designation" nzRequired>Designation</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Designation!">
+        <input formControlName="designation" id="designation" nz-input />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="specialization" nzRequired>Specialization</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Specialization!">
+        <nz-select formControlName="specialization" id=" specialization" nzShowSearch nzAllowClear
+                   nzPlaceHolder="Select a Specialization" [nzLoading]="isLoadingListOfSpecializations">
+          <nz-option *ngFor="let o of listOfSpecializations" [nzLabel]="o.name" [nzValue]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="department" nzRequired>Department</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Department!">
+        <nz-select formControlName="department" id="department" nzShowSearch nzAllowClear nzPlaceHolder="Select a Department" [nzLoading]="isLoadingListOfDepartments">
+          <nz-option *ngFor="let o of listOfDepartments" [nzLabel]="o.name" [nzValue]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+</div>
+<div *nzModalFooter>
+  <button (click)="cancel()" nz-button nzType="default">Cancel</button>
+  <button (click)="save()" [nzLoading]="isConfirmLoading" nz-button nzType="primary" [disabled]="doctorForm.invalid">Save</button>
+</div>

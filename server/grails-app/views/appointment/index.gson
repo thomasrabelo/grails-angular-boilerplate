@@ -1,0 +1,11 @@
+import grails.angular.boilerplate.Appointment
+
+model {
+	Iterable<Appointment> appointmentList
+	Long appointmentTotalCount
+}
+
+json {
+	resultList tmpl.appointment(appointmentList ?: [])
+	totalCount appointmentTotalCount
+}

@@ -48,7 +48,6 @@ export class DoctorShowComponent implements OnInit, OnDestroy {
       nzContent: 'Deseja excluir o doctor?',
       nzOnOk: () => {
         this.isLoading = true;
-
         this.doctorService.delete(id).subscribe(res => {
             this.messageService.info('Doctor:' + JSON.stringify(id))
             this.isLoading = false;
@@ -65,10 +64,10 @@ export class DoctorShowComponent implements OnInit, OnDestroy {
       nzTitle: 'Edit Doctor',
       nzContent: DoctorEditComponent,
       nzComponentParams: {
-        // doctorId: id
+        doctorId: id
       }
     }).afterClose.subscribe(result => {
-
+      this.loadData();
     });
   }
 

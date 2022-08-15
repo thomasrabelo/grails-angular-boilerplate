@@ -1,0 +1,11 @@
+import grails.angular.boilerplate.Specialization
+
+model {
+	Iterable<Specialization> specializationList
+	Long specializationTotalCount
+}
+
+json {
+	resultList tmpl.specialization(specializationList ?: [])
+	totalCount specializationTotalCount
+}

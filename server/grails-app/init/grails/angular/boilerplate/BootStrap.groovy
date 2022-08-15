@@ -5,6 +5,8 @@ class BootStrap {
     PacienteService pacienteService
     PatientService patientService
     DoctorService doctorService
+    DepartmentService departmentService
+    SpecializationService specializationService
 
     def init = { servletContext ->
         for(int i in 1..50) {
@@ -28,6 +30,18 @@ class BootStrap {
         }
 
         for(int i in 1..50) {
+            Department department = new Department();
+            department.name = "Department" + i
+            departmentService.save(department)
+        }
+
+        for(int i in 1..50) {
+            Specialization specialization = new Specialization();
+            specialization.name = "Specialization" + i
+            specializationService.save(specialization)
+        }
+
+        for(int i in 1..50) {
             Doctor doctor = new Doctor();
             doctor.name = "Joao" + i
             doctor.gender = Gender.MALE
@@ -36,8 +50,8 @@ class BootStrap {
             doctor.education = "MSc. Neurology"
             doctor.experience = "General"
             doctor.designation = "General"
-            doctor.specialization = null
-            doctor.department = null
+            doctor.specialization = specializationService.get(i)
+            doctor.department = departmentService.get(i)
             doctorService.save(doctor)
         }
     }

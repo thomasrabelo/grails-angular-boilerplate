@@ -8,13 +8,13 @@
     <form (ngSubmit)="save()" [formGroup]="patientForm" nz-form>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>Patient Name</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Patient Name!">
           <input formControlName="name" id="name" nz-input />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gender" nzRequired>Gender</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Gender!">
           <nz-select formControlName="gender" id="gender">
             <nz-option *ngFor="let o of genderEnum | keyvalue" [nzLabel]="o.key" [nzValue]="o.value"></nz-option>
           </nz-select>
@@ -22,13 +22,13 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dob" nzRequired>DOB</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid DOB!">
           <nz-date-picker formControlName="dob" id="dob"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bloodGroup" nzRequired>Blood Group</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Blood Group!">
           <nz-select formControlName="bloodGroup" id="bloodGroup">
             <nz-option *ngFor="let o of bloodGroupEnum | keyvalue" [nzLabel]="o.key" [nzValue]="o.value"></nz-option>
           </nz-select>
@@ -36,19 +36,19 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mobileNumber" nzRequired>Mobile Number</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Mobile Number!">
           <input formControlName="mobileNumber" id="mobileNumber" nz-input />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email" nzRequired>Email</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Email!">
           <input formControlName="email" id="email" nz-input />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="symptoms" nzRequired>Symptoms</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="symptoms">Symptoms</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
           <input formControlName="symptoms" id="symptoms" nz-input />
         </nz-form-control>
       </nz-form-item>
@@ -56,5 +56,5 @@
   </div>
   <div *nzModalFooter>
     <button (click)="cancel()" nz-button nzType="default">Cancel</button>
-    <button (click)="save()" [nzLoading]="isConfirmLoading" nz-button nzType="primary">Save</button>
+    <button (click)="save()" [nzLoading]="isConfirmLoading" nz-button nzType="primary" [disabled]="patientForm.invalid">Save</button>
   </div>

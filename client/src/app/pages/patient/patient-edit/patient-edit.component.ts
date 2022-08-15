@@ -15,6 +15,7 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   @Input() patientId?: number;
 
   isConfirmLoading = false;
+  errors: any[];
   patient: Patient = new Patient();
   patientForm!: FormGroup;
 
@@ -37,23 +38,23 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   }
 
   loadData(){
-      if (this.patientId) {
-        this.patientService.get(this.patientId)
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe((patient) => {
-            this.patient = patient;
-            this.patientForm.setValue({
-              id: this.patient.id ? this.patient.id : '',
-              name: this.patient.name ? this.patient.name : '',
-              gender: this.patient.gender ? this.patient.gender : '',
-              dob: this.patient.dob ? this.patient.dob : '',
-              bloodGroup: this.patient.bloodGroup ? this.patient.bloodGroup : '',
-              mobileNumber: this.patient.mobileNumber ? this.patient.mobileNumber : '',
-              email: this.patient.email ? this.patient.email : '',
-              symptoms: this.patient.symptoms ? this.patient.symptoms : ''
-            });
+    if (this.patientId) {
+      this.patientService.get(this.patientId)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((patient) => {
+          this.patient = patient;
+          this.patientForm.setValue({
+            id: this.patient.id ? this.patient.id : '',
+            name: this.patient.name ? this.patient.name : '',
+            gender: this.patient.gender ? this.patient.gender : '',
+            dob: this.patient.dob ? this.patient.dob : '',
+            bloodGroup: this.patient.bloodGroup ? this.patient.bloodGroup : '',
+            mobileNumber: this.patient.mobileNumber ? this.patient.mobileNumber : '',
+            email: this.patient.email ? this.patient.email : '',
+            symptoms: this.patient.symptoms ? this.patient.symptoms : ''
           });
-      }
+        });
+    }
   }
 
   initForm() {
@@ -65,28 +66,28 @@ export class PatientEditComponent implements OnInit, OnDestroy {
       bloodGroup: [null, [Validators.required]],
       mobileNumber: [null, [Validators.required]],
       email: [null, [Validators.required]],
-      symptoms: [null, [Validators.required]]
+      symptoms: [null]
     });
   }
 
   save() {
     if (this.patientForm.valid) {
-
       this.isConfirmLoading = true;
 
       const patient: Patient = this.patientForm.value;
-      this.patientService.save(this.patientForm.value).subscribe((patient) => {
-        this.modal.destroy();
-        this.isConfirmLoading = false;
-      }, (res: Response) => {
-        const json = res.json();
-        if (json.hasOwnProperty('message')) {
-          //this.errors = [json];
-        } else {
-          //this.errors = json._embedded.errors;
-        }
-      });
-
+      this.patientService.save(this.patientForm.value).subscribe(
+        (patient) => {
+          this.modal.destroy();
+        },
+        (res: Response) => {
+          this.isConfirmLoading = false;
+          const json = res.json();
+          if (json.hasOwnProperty('message')) {
+            this.errors = [json];
+          } else {
+            this.errors = [json];
+          }
+        });
     } else {
       Object.values(this.patientForm.controls).forEach(control => {
         if (control.invalid) {
@@ -100,5 +101,4 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   cancel(): void {
     this.modal.destroy();
   }
-
 }

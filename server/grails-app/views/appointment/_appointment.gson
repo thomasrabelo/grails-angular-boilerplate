@@ -1,0 +1,7 @@
+import grails.angular.boilerplate.Appointment
+
+model {
+	Appointment appointment
+}
+
+json g.render(appointment, [resolveTemplate: false])

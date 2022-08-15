@@ -6,10 +6,8 @@
   <nz-page-header-extra>
     <nz-space>
 
-      <nz-select *nzSpaceItem nzShowSearch nzAllowClear nzPlaceHolder="Select a Specialization" >
-        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      <nz-select *nzSpaceItem nzShowSearch nzAllowClear nzPlaceHolder="Select a Specialization" [nzLoading]="isLoadingListOfSpecializations">
+        <nz-option *ngFor="let o of listOfSpecializations" [nzLabel]="o.name" [nzValue]="o"></nz-option>
       </nz-select>
 
       <!--      <button *nzSpaceItem nz-button>Operation</button>-->
@@ -39,7 +37,7 @@
 
 </nz-page-header>
 
-<nz-list nzGrid [nzLoading]="isLoading">
+<nz-list nzGrid [nzLoading]="isLoadingListOfDoctors">
   <div nz-row [nzGutter]="16">
     <div nz-col [nzXXl]="8" [nzXl]="4" [nzLg]="6" [nzMd]="6" [nzSm]="12" [nzXs]="24" *ngFor="let doctor of listOfDoctors">
       <nz-list-item>

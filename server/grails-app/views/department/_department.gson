@@ -1,0 +1,7 @@
+import grails.angular.boilerplate.Department
+
+model {
+	Department department
+}
+
+json g.render(department, [resolveTemplate: false])

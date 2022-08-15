@@ -1,0 +1,7 @@
+import grails.angular.boilerplate.Specialization
+
+model {
+	Specialization specialization
+}
+
+json g.render(specialization, [resolveTemplate: false])

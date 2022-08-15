@@ -9,6 +9,8 @@ export class Doctor {
   education: string;
   experience: string;
   designation: string;
+  department: Department
+  specialization: Specialization
 
   constructor(object?: any) {
     if (object) {
@@ -26,4 +28,14 @@ export class Doctor {
 export enum Gender {
   MALE = 'MALE',
   FEMALE = 'FEMALE'
+}
+
+export class Specialization {
+  id: number;
+  name: string;
+}
+
+export class Department {
+  id: number;
+  name: string;
 }

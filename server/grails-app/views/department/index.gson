@@ -1,0 +1,11 @@
+import grails.angular.boilerplate.Department
+
+model {
+	Iterable<Department> departmentList
+	Long departmentTotalCount
+}
+
+json {
+	resultList tmpl.department(departmentList ?: [])
+	totalCount departmentTotalCount
+}

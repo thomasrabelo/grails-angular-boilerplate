@@ -4,4 +4,4 @@ model {
 	Doctor doctor
 }
 
-json g.render(doctor, [resolveTemplate: false])
+json g.render(doctor, [expand:['department', 'specialization'], resolveTemplate: false])
