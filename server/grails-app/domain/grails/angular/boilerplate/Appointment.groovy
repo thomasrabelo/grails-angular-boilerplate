@@ -8,8 +8,8 @@ class Appointment {
     Date to
     Boolean allDay
     String symptom
-
-    static belongsTo = [department: Department, consultation: Doctor]
+    Department department
+    Doctor consultation
 
     static constraints = {
         location(nullable: true)

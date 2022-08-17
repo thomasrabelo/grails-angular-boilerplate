@@ -10,8 +10,8 @@ class Doctor {
     String education
     String experience
     String designation
-
-    static belongsTo = [department: Department, specialization: Specialization]
+    Department department
+    Specialization specialization
 
     static constraints = {
         photoUrl(nullable: true)
