@@ -6,7 +6,10 @@
   <nz-page-header-extra>
     <nz-space>
 
-      <nz-select *nzSpaceItem nzShowSearch nzAllowClear nzPlaceHolder="Select a Specialization" [nzLoading]="isLoadingListOfSpecializations">
+      <nz-select *nzSpaceItem nzShowSearch nzAllowClear nzPlaceHolder="Select a Specialization"
+                 (ngModelChange)="loadDataFromServer(this.page, this.itemsPerPage)"
+                 [(ngModel)]="selectedSpecialization"
+                 [nzLoading]="isLoadingListOfSpecializations">
         <nz-option *ngFor="let o of listOfSpecializations" [nzLabel]="o.name" [nzValue]="o"></nz-option>
       </nz-select>
 

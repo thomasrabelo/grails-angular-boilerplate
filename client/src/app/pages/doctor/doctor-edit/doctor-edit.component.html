@@ -63,7 +63,8 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="department" nzRequired>Department</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Department!">
-        <nz-select formControlName="department" id="department" nzShowSearch nzAllowClear nzPlaceHolder="Select a Department" [nzLoading]="isLoadingListOfDepartments">
+        <nz-select formControlName="department" id="department" nzShowSearch nzAllowClear
+                   nzPlaceHolder="Select a Department" [nzLoading]="isLoadingListOfDepartments">
           <nz-option *ngFor="let o of listOfDepartments" [nzLabel]="o.name" [nzValue]="o"></nz-option>
         </nz-select>
       </nz-form-control>

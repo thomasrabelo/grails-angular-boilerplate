@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subject, takeUntil} from "rxjs";
 import {DoctorService} from "../doctor.service";
@@ -10,7 +10,8 @@ import {NzMessageService} from "ng-zorro-antd/message";
 @Component({
   selector: 'app-doctor-show',
   templateUrl: './doctor-show.component.html',
-  styleUrls: ['./doctor-show.component.css']
+  styleUrls: ['./doctor-show.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DoctorShowComponent implements OnInit, OnDestroy {
   doctor?: Doctor;
@@ -19,6 +20,7 @@ export class DoctorShowComponent implements OnInit, OnDestroy {
   protected readonly unsubscribe$ = new Subject<void>();
 
   constructor(private doctorService: DoctorService, private route: ActivatedRoute,
+              private changeDetector: ChangeDetectorRef,
               private router: Router, private modalService: NzModalService, private messageService: NzMessageService) { }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class DoctorShowComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe((doctor) => {
             this.doctor = doctor;
+            this.changeDetector.detectChanges();
           });
       }
     });

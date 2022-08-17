@@ -1258,6 +1258,14 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
+"@delon/util@^13.5.2":
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/@delon/util/-/util-13.5.2.tgz#f8b0cc5ccaec39fea96c0717c9906e6a2f4a00ed"
+  integrity sha512-nyefKtpqTit8xqmFlZSUDk4a39ymnA8e685X8x0Lg3N9d0y7fNeYXEp63em2obIjW1rSrToPsS8/nlcHoOeDqg==
+  dependencies:
+    extend "^3.0.2"
+    tslib "^2.3.0"
+
 "@discoveryjs/json-ext@0.5.6":
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.6.tgz#d5e0706cf8c6acd8c6032f8d54070af261bbbb2f"
@@ -3503,7 +3511,7 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-extend@^3.0.0, extend@~3.0.2:
+extend@^3.0.0, extend@^3.0.2, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==

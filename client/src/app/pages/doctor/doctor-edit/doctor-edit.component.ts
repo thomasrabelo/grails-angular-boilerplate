@@ -1,5 +1,5 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {BloodGroup, Gender, Patient} from "../../patient/patient.model";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Gender} from "../../doctor/doctor.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,7 +12,8 @@ import {DepartmentService} from "../department.service";
 @Component({
   selector: 'app-doctor-edit',
   templateUrl: './doctor-edit.component.html',
-  styleUrls: ['./doctor-edit.component.css']
+  styleUrls: ['./doctor-edit.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DoctorEditComponent implements OnInit, OnDestroy {
   @Input() doctorId?: number;
@@ -31,6 +32,7 @@ export class DoctorEditComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private doctorService: DoctorService,
               private specializationService: SpecializationService, private departmentService: DepartmentService,
+              private changeDetector: ChangeDetectorRef,
               private router: Router, private modal: NzModalRef) {}
 
   ngOnInit() {
@@ -59,9 +61,10 @@ export class DoctorEditComponent implements OnInit, OnDestroy {
             education: doctor.education ? doctor.education : '',
             experience: doctor.experience ? doctor.experience : '',
             designation: doctor.designation ? doctor.designation : '',
-            specialization: doctor.specialization ? doctor.specialization : '',
-            department: doctor.department ? doctor.department : ''
+            specialization: doctor.specialization ? doctor.specialization as Specialization : '',
+            department: doctor.department ? doctor.department as Department : ''
           });
+          this.changeDetector.detectChanges();
         });
     }
   }
@@ -84,7 +87,6 @@ export class DoctorEditComponent implements OnInit, OnDestroy {
   save() {
     if (this.doctorForm.valid) {
       this.isConfirmLoading = true;
-
       this.doctorService.save(this.doctorForm.value).subscribe((doctor) => {
         this.modal.destroy();
         this.isConfirmLoading = false;
@@ -120,6 +122,7 @@ export class DoctorEditComponent implements OnInit, OnDestroy {
       .subscribe(specializationResultList => {
         this.isLoadingListOfSpecializations = false;
         this.listOfSpecializations = specializationResultList.resultList;
+        this.changeDetector.detectChanges();
       })
   }
 
@@ -132,7 +135,7 @@ export class DoctorEditComponent implements OnInit, OnDestroy {
       .subscribe(departmentResultList => {
         this.isLoadingListOfDepartments = false;
         this.listOfDepartments = departmentResultList.resultList;
+        this.changeDetector.detectChanges();
       })
   }
-
 }

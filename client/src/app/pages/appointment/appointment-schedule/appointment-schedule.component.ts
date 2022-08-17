@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {NzCalendarMode} from "ng-zorro-antd/calendar";
 import {Department, Doctor} from "../../doctor/doctor.model";
 import {Subject, takeUntil} from "rxjs";
@@ -7,7 +7,8 @@ import {DoctorService} from "../../doctor/doctor.service";
 @Component({
   selector: 'app-appointment-schedule',
   templateUrl: './appointment-schedule.component.html',
-  styleUrls: ['./appointment-schedule.component.css']
+  styleUrls: ['./appointment-schedule.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppointmentScheduleComponent implements OnInit, OnDestroy {
 
@@ -19,7 +20,7 @@ export class AppointmentScheduleComponent implements OnInit, OnDestroy {
 
   protected readonly unsubscribe$ = new Subject<void>();
 
-  constructor(private doctorService: DoctorService) { }
+  constructor(private changeDetector: ChangeDetectorRef, private doctorService: DoctorService) { }
 
   ngOnInit(): void {
     this.loadSpecialists();
@@ -39,6 +40,7 @@ export class AppointmentScheduleComponent implements OnInit, OnDestroy {
       .subscribe(doctorResultList => {
         this.isLoadingListOfSpecialists = false;
         this.listOfSpecialists = doctorResultList.resultList;
+        this.changeDetector.detectChanges();
       })
   }
 

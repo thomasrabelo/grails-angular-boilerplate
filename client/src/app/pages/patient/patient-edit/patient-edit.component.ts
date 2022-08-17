@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {PatientService} from "../patient.service";
@@ -9,14 +9,14 @@ import {NzModalRef} from "ng-zorro-antd/modal";
 @Component({
   selector: 'app-patient-edit',
   templateUrl: './patient-edit.component.html',
-  styleUrls: ['./patient-edit.component.css']
+  styleUrls: ['./patient-edit.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PatientEditComponent implements OnInit, OnDestroy {
   @Input() patientId?: number;
 
   isConfirmLoading = false;
   errors: any[];
-  patient: Patient = new Patient();
   patientForm!: FormGroup;
 
   bloodGroupEnum = BloodGroup;
@@ -24,7 +24,8 @@ export class PatientEditComponent implements OnInit, OnDestroy {
 
   protected readonly unsubscribe$ = new Subject<void>();
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private patientService: PatientService,
+  constructor(private fb: FormBuilder, private route: ActivatedRoute,
+              private patientService: PatientService, private changeDetector: ChangeDetectorRef,
               private router: Router, private modal: NzModalRef) {}
 
   ngOnInit() {
@@ -42,16 +43,15 @@ export class PatientEditComponent implements OnInit, OnDestroy {
       this.patientService.get(this.patientId)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((patient) => {
-          this.patient = patient;
           this.patientForm.setValue({
-            id: this.patient.id ? this.patient.id : '',
-            name: this.patient.name ? this.patient.name : '',
-            gender: this.patient.gender ? this.patient.gender : '',
-            dob: this.patient.dob ? this.patient.dob : '',
-            bloodGroup: this.patient.bloodGroup ? this.patient.bloodGroup : '',
-            mobileNumber: this.patient.mobileNumber ? this.patient.mobileNumber : '',
-            email: this.patient.email ? this.patient.email : '',
-            symptoms: this.patient.symptoms ? this.patient.symptoms : ''
+            id: patient.id ? patient.id : '',
+            name: patient.name ? patient.name : '',
+            gender: patient.gender ? patient.gender : '',
+            dob: patient.dob ? patient.dob : '',
+            bloodGroup: patient.bloodGroup ? patient.bloodGroup : '',
+            mobileNumber: patient.mobileNumber ? patient.mobileNumber : '',
+            email: patient.email ? patient.email : '',
+            symptoms: patient.symptoms ? patient.symptoms : ''
           });
         });
     }
@@ -73,8 +73,6 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   save() {
     if (this.patientForm.valid) {
       this.isConfirmLoading = true;
-
-      const patient: Patient = this.patientForm.value;
       this.patientService.save(this.patientForm.value).subscribe(
         (patient) => {
           this.modal.destroy();

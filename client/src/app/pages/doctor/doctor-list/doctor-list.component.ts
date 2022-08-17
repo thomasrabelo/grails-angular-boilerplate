@@ -1,32 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import {Patient} from "../../patient/patient.model";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {PatientService} from "../../patient/patient.service";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {DoctorService} from "../doctor.service";
-import {NzTableQueryParams} from "ng-zorro-antd/table";
-import {PatientEditComponent} from "../../patient/patient-edit/patient-edit.component";
 import {DoctorEditComponent} from "../doctor-edit/doctor-edit.component";
 import {Doctor, Specialization} from "../doctor.model";
-import {DoctorShowComponent} from "../doctor-show/doctor-show.component";
 import {Router} from "@angular/router";
 import {SpecializationService} from "../specialization.service";
 
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.css']
+  styleUrls: ['./doctor-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DoctorListComponent implements OnInit {
 
-  totalItems:number = 0;
-  itemsPerPage:number = 10;
+  totalItems: number = 0;
+  itemsPerPage: number = 10;
   page: number = 0;
   sortField: string = 'id';
   sortOrder: string = 'asc';
+
   listOfDoctors: Doctor[] = [];
   isLoadingListOfDoctors: boolean = false;
+
   listOfSpecializations: Specialization[] = [];
   isLoadingListOfSpecializations: boolean = false;
   fallback =
@@ -38,6 +36,7 @@ export class DoctorListComponent implements OnInit {
   constructor(private doctorService: DoctorService,
               private specializationService: SpecializationService,
               private modalService: NzModalService,
+              private changeDetector: ChangeDetectorRef,
               private messageService: NzMessageService, private router: Router) { }
 
 
@@ -73,16 +72,8 @@ export class DoctorListComponent implements OnInit {
         this.isLoadingListOfDoctors = false;
         this.totalItems = doctorResultList.totalCount;
         this.listOfDoctors = doctorResultList.resultList;
+        this.changeDetector.detectChanges();
       })
-  }
-
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    const { pageSize, pageIndex, sort, filter } = params;
-    const currentSort = sort.find(item => item.value !== null);
-    const sortField = (currentSort && currentSort.key) || null;
-    let sortOrder = (currentSort && currentSort.value) || null;
-
-    this.loadDataFromServer(pageIndex, pageSize, sortField, sortOrder);
   }
 
   delete(id: number): void {
@@ -91,27 +82,15 @@ export class DoctorListComponent implements OnInit {
       nzContent: 'Deseja excluir o patient?',
       nzOnOk: () => {
         this.isLoadingListOfDoctors = true;
-
         this.doctorService.delete(id).subscribe(res => {
             this.messageService.info('Doctor:' + JSON.stringify(id))
             this.isLoadingListOfDoctors = false;
             this.loadDataFromServer(this.page, this.itemsPerPage)
+            this.changeDetector.detectChanges();
           },
           error => this.isLoadingListOfDoctors = false
         );
       }
-    });
-  }
-
-  edit(id: number): void {
-    this.modalService.create({
-      nzTitle: 'Edit Doctor',
-      nzContent: DoctorEditComponent,
-      nzComponentParams: {
-        // doctorId: id
-      }
-    }).afterClose.subscribe(result => {
-      this.loadDataFromServer(this.page, this.itemsPerPage);
     });
   }
 
