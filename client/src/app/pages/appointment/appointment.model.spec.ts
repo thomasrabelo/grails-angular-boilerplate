@@ -1,7 +1,7 @@
-import { Appointment.Model } from './appointment.model';
+import { Appointment } from './appointment.model';
 
 describe('Appointment.Model', () => {
   it('should create an instance', () => {
-    expect(new Appointment.Model()).toBeTruthy();
+    expect(new Appointment()).toBeTruthy();
   });
 });

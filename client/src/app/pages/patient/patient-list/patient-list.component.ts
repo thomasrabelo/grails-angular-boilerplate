@@ -34,7 +34,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
               private messageService: NzMessageService) { }
 
   ngOnInit(): void {
-    this.loadDataFromServer(0, this.itemsPerPage);
+    // this.loadDataFromServer(0, this.itemsPerPage);
   }
 
   ngOnDestroy(): void {

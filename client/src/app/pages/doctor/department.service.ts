@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Any, BaseUrl, GET, Path, Query, RebirthHttpClient} from "@ng-zorro/rebirth-http";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Department, Specialization} from "./doctor.model";
+import {Department} from "./doctor.model";
 import {PagedResultList} from "../../core/paged-result-list.model";
 
 @BaseUrl('http://localhost:8080')

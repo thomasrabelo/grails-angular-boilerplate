@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DoctorEditComponent } from './doctor-edit/doctor-edit.component';
 import { DoctorShowComponent } from './doctor-show/doctor-show.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';

@@ -18,5 +18,4 @@ interface DoctorService {
 
     @Where({ specialization.id == id })
     List<Doctor> findAllBySpecializationId(Long id, Map args)
-
 }

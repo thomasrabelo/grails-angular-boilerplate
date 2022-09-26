@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'doctor', loadChildren: () => import('./pages/doctor/doctor.module').then(m => m.DoctorModule),
     data: { breadcrumb: 'Doctors' } },
   { path: 'patient', loadChildren: () => import('./pages/patient/patient.module').then(m => m.PatientModule),
-    data: { breadcrumb: 'Patients' } }
+    data: { breadcrumb: 'Patients' } },
+  { path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule),
+    data: { breadcrumb: 'About' } }
 ];
 
 @NgModule({
